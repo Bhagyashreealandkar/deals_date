@@ -1,10 +1,16 @@
-pipeline {
-    agent any
-
-    stages {
-        stage('Verify Branch') {
-            steps { 
-                   echo $GIT_BRANCH
-
-              
-            }}}}
+node {
+    stage('SCM') {
+    	echo 'Gathering code from version control'
+	checkout scm
+    }
+    stage('Build') {
+        echo 'Building....'
+        echo 'Building New Feature'
+    }
+    stage('Test') {
+        echo 'Testing....'
+    }
+    stage('Deploy') {
+        echo 'Deploying....'
+    }
+}
