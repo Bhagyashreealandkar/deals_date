@@ -2,9 +2,22 @@ pipeline {
     agent any
 
     stages {
+
         stage('Verify Branch') {
             steps { 
-                   echo $GIT_BRANCH
-
+                   echo $GIT_BRANCH              
+            }}
+        stage('docker builld') {
+            steps { 
+                 pwsh(script:'docker images -a')
+                 pwsh(script: """
+                     cd Downloads/
+                     docker images -a
+                     docker build -t jenkins-pipeline
+                     docker images -a
+                     cd ..
+                  """)
               
-            }}}}
+            }}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
+
+}}
